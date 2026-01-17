@@ -1,0 +1,555 @@
+:root {
+    --timber-brown: #4B2E1E;
+    --timber-brown-light: #895438a9;
+    --forest-green-light: #3d7e6ba5;
+    --forest-green: #2F5D50;
+    --safety-orange: #F97316;
+    --soft-bg: #F5F5F4;
+    --dark-soft: #232323;
+}
+
+.notify,
+.notify-container,
+.notify-wrapper {
+    position: fixed !important;
+    z-index: 9999 !important;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--soft-bg);
+    height: 100%;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+footer {
+    flex-shrink: 0;
+    z-index: 1;
+}
+
+.bg-timber {
+    background-color: var(--timber-brown);
+}
+
+.bg-forest {
+    background-color: var(--forest-green);
+}
+
+
+.bg-safety {
+    background-color: var(--safety-orange);
+}
+
+.bg-soft {
+    background-color: var(--soft-bg);
+}
+
+.text-soft {
+    color: var(--soft-bg);
+}
+
+.dark-bg {
+    background-color: var(--dark-soft);
+    color: var(--soft-bg);
+}
+
+/* LOGIN PAGE */
+.carousel,
+.carousel-inner,
+.carousel-item {
+    height: 100%;
+}
+
+.carousel-item img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+/* OVERLAY AGAR TEKS TERBACA */
+.carousel-item::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, 0.65),
+            rgba(0, 0, 0, 0.15),
+            transparent);
+    z-index: 1;
+}
+
+/* POSISI CAPTION */
+.carousel-caption {
+    z-index: 2;
+    text-align: left;
+    left: 8%;
+    right: auto;
+    bottom: 12%;
+    max-width: 520px;
+}
+
+/* JUDUL */
+.carousel-caption h5 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #fff;
+    text-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+}
+
+/* SUBTEKS */
+.carousel-caption p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #f5f5f4;
+    margin-top: 0.5rem;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .carousel-caption {
+        left: 6%;
+        bottom: 10%;
+        max-width: 90%;
+    }
+
+    .carousel-caption h5 {
+        font-size: 1.6rem;
+    }
+}
+
+.logo-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.logo-img {
+    display: block;
+    margin-bottom: 8px;
+    /* atur jarak manual */
+}
+
+
+.logo-circle {
+    width: 90px;
+    color: var(--timber-brown);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.login-text {
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+
+.logo-text {
+    position: relative;
+    display: inline-flex;
+    font-weight: 800;
+    font-size: 2.4rem;
+    letter-spacing: 2px;
+    margin-bottom: 0;
+    isolation: isolate;
+}
+
+/* Background sliding */
+.logo-text::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 52%;
+    height: 100%;
+    background-color: var(--forest-green);
+    border-radius: 5px;
+    z-index: -1;
+    animation: slideBg 4s ease-in-out infinite;
+}
+
+/* COMMON TEXT */
+.logo-text span {
+    padding: 6px 2px;
+    transition: color 0.4s ease;
+}
+
+/* Hilangkan jarak panel kanan */
+.right-panel {
+    padding: 0;
+    overflow: hidden;
+}
+
+
+/* CARD VARIANTS */
+.card-timber {
+    background-color: var(--timber-brown);
+    color: #fff;
+}
+
+.card-forest {
+    background-color: var(--forest-green);
+    color: #fff;
+}
+
+.card-safety {
+    background-color: var(--safety-orange);
+    color: #fff;
+}
+
+/* Supaya teks kecil tetap readable */
+.card-timber small,
+.card-forest small,
+.card-safety small {
+    opacity: 0.85;
+}
+
+/* Badge netral di card warna */
+.card .badge-soft {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #fff;
+}
+
+.btn-forest {
+    background-color: var(--forest-green);
+    color: #fff;
+}
+
+.btn-forest:hover {
+    background-color: #244940;
+}
+
+/* Outline btn Version */
+.btn-outline-forest {
+    color: var(--forest-green);
+    border: 1px solid var(--forest-green);
+    background-color: transparent;
+}
+
+.btn-outline-forest:hover {
+    background-color: var(--forest-green);
+    color: #fff;
+    border-color: var(--forest-green);
+}
+
+/* Fokus (aksesibilitas) */
+.btn-outline-forest:focus,
+.btn-outline-forest:focus-visible {
+    box-shadow: 0 0 0 0.2rem rgba(47, 93, 80, 0.35);
+}
+
+/* Active */
+.btn-outline-forest:active {
+    background-color: #244940;
+    border-color: #244940;
+    color: #fff;
+}
+
+/* Disabled */
+.btn-outline-forest:disabled,
+.btn-outline-forest.disabled {
+    color: #9BB7AE;
+    border-color: #9BB7AE;
+    background-color: transparent;
+    opacity: 0.65;
+}
+
+.logo-circle {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: #fff;
+    color: var(--timber-brown);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.login-text {
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+
+.text-forest {
+    color: var(--forest-green);
+}
+
+.chart-placeholder {
+    height: 280px;
+    background: #F5F5F4;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-logout {
+    color: var(--soft-bg);
+    background: rgba(249, 22, 22, 0.529);
+    border-radius: 10px;
+    width: 20px;
+}
+
+.nav-logout:hover {
+    background: rgba(249, 115, 22, 0.3);
+    color: #fff;
+}
+
+.navbar .nav-link {
+    transition: all 0.25s ease;
+    position: relative;
+}
+
+.navbar .nav-link.active {
+    opacity: 1 !important;
+    font-weight: 600;
+}
+
+/* Garis bawah indikator */
+.navbar .nav-link.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 3px;
+    width: 100%;
+    height: 3px;
+    background-color: var(--safety-orange);
+    border-radius: 4px;
+}
+
+/* SIDEBAR LINK */
+.sidebar {
+    position: fixed;
+}
+
+.sidebar .nav-link {
+    color: rgba(255, 255, 255, 0.75);
+    border-radius: 10px;
+    padding: 10px 14px;
+    transition: all 0.25s ease;
+}
+
+/* HOVER */
+.sidebar .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: #fff;
+}
+
+/* ACTIVE */
+.sidebar .nav-link.active {
+    background-color: var(--forest-green);
+    color: #fff;
+    font-weight: 600;
+    box-shadow: inset 4px 0 0 var(--safety-orange);
+}
+
+/* MOBILE NAV */
+.mobile-nav {
+    height: auto;
+}
+
+.mobile-nav .nav-item {
+    flex: 1;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 0.75rem;
+    transition: all 0.25s ease;
+}
+
+.mobile-nav .nav-item i {
+    font-size: 1.3rem;
+    display: block;
+}
+
+/* ===============================
+   MOBILE NAV BASE
+================================ */
+.mobile-nav {
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+.mobile-nav .nav-item {
+    padding: .75rem 0;
+    position: relative;
+}
+
+/* INNER WRAPPER */
+.mobile-nav .nav-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    transition: all .25s ease;
+}
+
+/* ICON */
+.mobile-nav i {
+    font-size: 1.25rem;
+    transition: all .25s ease;
+}
+
+/* ===============================
+   ACTIVE STATE (FLOATING)
+================================ */
+.mobile-nav .nav-item.active .nav-inner {
+    background-color: var(--soft-bg);
+    color: var(--timber-brown);
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .25);
+}
+
+.mobile-nav .nav-item.active i {
+    color: var(--timber-brown);
+    font-size: 1.35rem;
+}
+
+/* ACTIVE TEXT */
+.mobile-nav .nav-item.active small {
+    font-weight: 600;
+}
+
+/* ===============================
+   TAP FEEDBACK
+================================ */
+.mobile-nav .nav-item:active .nav-inner {
+    transform: translateY(-10px) scale(0.95);
+}
+
+
+/* LOGOUT */
+.mobile-nav .nav-logout {
+    color: #FFD6D6;
+}
+
+.mobile-nav .nav-logout i {
+    color: #FFD6D6;
+}
+
+/* ===============================
+            HEADER MOBILE
+            ================================ */
+.header-mobile {
+    position: fixed;
+    top: 0;
+    z-index: 1030;
+    background: #1f3d36;
+    /* forest */
+    border-bottom: 1px solid rgba(255, 255, 255, .1);
+}
+
+/* LOGO IMAGE */
+.header-logo {
+    width: 38px;
+    height: auto;
+}
+
+/* LOGO TEXT (RESPONSIVE) */
+.logo-text {
+    position: relative;
+    display: inline-flex;
+    font-weight: 800;
+    font-size: 1.4rem;
+    /* mobile */
+    letter-spacing: 2px;
+    margin-bottom: 0;
+    isolation: isolate;
+}
+
+/* Background sliding */
+.logo-text::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 52%;
+    height: 100%;
+    background-color: var(--forest-green);
+    border-radius: 5px;
+    z-index: -1;
+    animation: slideBg 4s ease-in-out infinite;
+}
+
+/* COMMON TEXT */
+.logo-text span {
+    padding: 4px 2px;
+    transition: color 0.4s ease;
+}
+
+
+/* SUBTITLE */
+.logo-subtext {
+    font-size: 1rem;
+    letter-spacing: 1px;
+    color: #fff;
+    margin-top: 4px;
+}
+
+/* DEFAULT COLOR */
+.wood-text {
+    color: #fff;
+}
+
+.dark-text {
+    color: #111;
+}
+
+/* ===============================
+            ANIMATION
+            ================================ */
+@keyframes slideBg {
+
+    0%,
+    100% {
+        transform: translateX(0%);
+    }
+
+    50% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes textSyncPang {
+
+    0%,
+    100% {
+        color: #111;
+    }
+
+    50% {
+        color: #fff;
+    }
+}
+
+@keyframes textSyncLong {
+
+    0%,
+    100% {
+        color: #fff;
+    }
+
+    50% {
+        color: #111;
+    }
+}
+
+.wood-text {
+    animation: textSyncPang 4s ease-in-out infinite;
+}
+
+.dark-text {
+    animation: textSyncLong 4s ease-in-out infinite;
+}
