@@ -12,6 +12,7 @@ class Transaksi extends Model
     protected $table = 'transaksi';
 
     protected $fillable = [
+        'id',
         'user_id',
         'cabang_id',
         'tanggal',
@@ -21,7 +22,7 @@ class Transaksi extends Model
     ];
 
     protected $casts = [
-        'tanggal' => 'date',
+        'tanggal' => 'datetime',
         'total' => 'decimal:2',
     ];
 

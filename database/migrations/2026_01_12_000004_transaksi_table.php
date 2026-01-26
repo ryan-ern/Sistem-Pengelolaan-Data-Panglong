@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('pengguna')->cascadeOnDelete();
             $table->foreignId('cabang_id')->constrained('cabang')->cascadeOnDelete();
-            $table->date('tanggal');
+            $table->dateTime('tanggal');
             $table->enum('jenis_transaksi', ['masuk', 'keluar']);
             $table->text('informasi')->nullable();
             $table->decimal('total', 15, 0);
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('transaksi');
     }
 };

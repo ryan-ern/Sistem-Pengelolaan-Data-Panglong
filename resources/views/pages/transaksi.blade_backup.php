@@ -45,7 +45,7 @@
                                         <button class="btn btn-forest-light w-100 dropdown-toggle" data-bs-toggle="dropdown"
                                             aria-expanded="false">
                                             <i class="bi bi-printer"></i>
-                                            <span class="d-none d-md-inline"> PDF</span>
+                                            <span class="d-none d-md-inline"> Download PDF</span>
                                         </button>
 
                                         <ul class="dropdown-menu w-100">
@@ -298,7 +298,7 @@
 
             @foreach ($transaksi as $item)
                 <div class="modal fade" id="modalEdit{{ $item->id }}" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable cabang_edit">
+                    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
                         <div class="modal-content dark-bg text-light">
 
                             <form action="{{ route('transaksi.update', $item->id) }}" method="POST">
@@ -319,20 +319,16 @@
 
                                         {{-- FORM UTAMA --}}
                                         <div class="col-md-4">
-                                            <label class="form-label">Cabang</label>
-                                            <select name="cabang_id" class="form-select mb-3 cabangEdit"
-                                                data-id="{{ $item->id }}" data-role="{{ Auth::user()->role }}"
-                                                data-cabang="{{ $item->cabang_id }}" disabled>
-                                                @foreach ($cabang as $c)
-                                                    <option value="{{ $c->id }}"
-                                                        {{ $item->cabang_id == $c->id ? 'selected' : '' }}>
-                                                        {{ $c->nama_cabang }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                            @if (trim($item->informasi))
-                                                <input type="hidden" name="cabang_id" class="cabangHidden"
-                                                    value="{{ $item->cabang_id }}">
+                                            @if (Auth::user()->role != 'admin')
+                                                <label class="form-label">Cabang</label>
+                                                <select name="cabang_id" class="form-select mb-3" required>
+                                                    @foreach ($cabang as $c)
+                                                        <option value="{{ $c->id }}"
+                                                            {{ $item->cabang_id == $c->id ? 'selected' : '' }}>
+                                                            {{ $c->nama_cabang }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
                                             @endif
 
                                             <label class="form-label">Jenis Transaksi</label>
@@ -358,20 +354,25 @@
                                             <h6 class="fw-semibold mb-2">Tambah Kayu</h6>
 
                                             <label class="form-label">Jenis Kayu</label>
-                                            <select class="form-select mb-2 kayuSelect" data-id="{{ $item->id }}"
-                                                disabled>
+                                            <select class="form-select mb-2 kayuSelect" data-id="{{ $item->id }}">
                                                 <option value="">Pilih Kayu</option>
+                                                @foreach ($kayu as $k)
+                                                    <option value="{{ $k->id }}" data-nama="{{ $k->jenis_kayu }}"
+                                                        data-harga="{{ $k->harga_satuan }}">
+                                                        {{ $k->jenis_kayu }} -
+                                                        Rp {{ number_format($k->harga_satuan, 0, ',', '.') }}
+                                                    </option>
+                                                @endforeach
                                             </select>
-
 
                                             <label class="form-label">Jumlah</label>
                                             <input type="number" class="form-control mb-3 qtyInput"
                                                 data-id="{{ $item->id }}" min="1">
 
-                                            <div class="btn btn-success w-100 addToCart" data-mode="edit"
+                                            <button type="button" class="btn btn-success w-100 addToCart"
                                                 data-id="{{ $item->id }}">
                                                 <i class="bi bi-plus-circle me-1"></i> Tambah ke Keranjang
-                                            </div>
+                                            </button>
                                         </div>
 
                                         {{-- KERANJANG --}}
@@ -410,7 +411,8 @@
 
                                 {{-- FOOTER --}}
                                 <div class="modal-footer border-0">
-                                    <div class="btn btn-secondary" data-bs-dismiss="modal">Batal</div>
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Batal</button>
                                     <button class="btn btn-warning">
                                         <i class="bi bi-save me-1"></i> Perbarui Data
                                     </button>
@@ -447,22 +449,14 @@
                                     <div class="col-md-4">
                                         @if (Auth::user()->role != 'admin')
                                             <label class="form-label">Cabang</label>
-                                            <select name="cabang_id" id="cabangTambah" class="form-select mb-3"
-                                                data-role="{{ Auth::user()->role }}"
-                                                data-cabang="{{ Auth::user()->cabang_id ?? '' }}" required>
-
+                                            <select name="cabang_id" class="form-select mb-3" required>
                                                 <option value="">Pilih Cabang</option>
                                                 @foreach ($cabang as $c)
                                                     <option value="{{ $c->id }}">{{ $c->nama_cabang }}</option>
                                                 @endforeach
                                             </select>
-                                        @else
-                                            <input type="hidden" name="cabang_id" id="cabangTambah"
-                                                data-role="{{ Auth::user()->role }}"
-                                                data-cabang="{{ Auth::user()->cabang_id ?? '' }}"
-                                                value="{{ Auth::user()->cabang_id }}" />
                                         @endif
-                                        <input type="hidden" name="cabang_id" id="cabangHidden">
+
                                         <label class="form-label">Jenis Transaksi</label>
                                         <select name="jenis_transaksi" class="form-select mb-3" required>
                                             <option value="">Pilih Jenis</option>
@@ -481,15 +475,21 @@
                                         <h6 class="fw-semibold mb-2">Tambah Kayu</h6>
 
                                         <label class="form-label">Jenis Kayu</label>
-                                        <select id="kayuSelect" class="form-select mb-2" disabled>
+                                        <select id="kayuSelect" class="form-select mb-2">
                                             <option value="">Pilih Kayu</option>
+                                            @foreach ($kayu as $item)
+                                                <option value="{{ $item->id }}" data-nama="{{ $item->jenis_kayu }}"
+                                                    data-harga="{{ $item->harga_satuan }}">
+                                                    {{ $item->jenis_kayu }} -
+                                                    Rp {{ number_format($item->harga_satuan, 0, ',', '.') }}
+                                                </option>
+                                            @endforeach
                                         </select>
-
 
                                         <label class="form-label">Jumlah</label>
                                         <input type="number" id="qtyInput" class="form-control mb-3" min="1">
 
-                                        <div class="btn btn-success w-100 addToCart" data-mode="tambah">
+                                        <div class="btn btn-success w-100" id="addToCart">
                                             <i class="bi bi-plus-circle me-1"></i> Tambah ke Keranjang
                                         </div>
                                     </div>

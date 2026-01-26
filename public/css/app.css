@@ -227,6 +227,15 @@ footer {
     background-color: #244940;
 }
 
+.btn-forest-light {
+    background-color: var(--forest-green-light);
+    color: #fff;
+}
+
+.btn-forest-light:hover {
+    background-color: #35534b;
+}
+
 /* Outline btn Version */
 .btn-outline-forest {
     color: var(--forest-green);
@@ -552,4 +561,36 @@ footer {
 
 .dark-text {
     animation: textSyncLong 4s ease-in-out infinite;
+}
+
+.costume-card {
+    background: var(--timber-brown-light);
+    border-radius: 15px;
+    color: var(--soft-bg);
+}
+
+.costume-card .card-body {
+    border-radius: 15px;
+    background: var(--timber-brown-light);
+}
+
+.costume-inner {
+    background: var(--dark-soft);
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.pagination .page-link {
+    background-color: #1f1f1f;
+    color: #fff;
+    border: none;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #2f5d50;
+}
+
+.costume-paginate p {
+    color: var(--soft-bg) !important;
+    margin-right: 12px !important;
 }

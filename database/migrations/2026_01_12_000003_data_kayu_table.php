@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('cabang_id')->constrained('cabang')->cascadeOnDelete();
             $table->string('jenis_kayu');
             $table->integer('jumlah');
-            $table->decimal('harga_satuan', 15, 2);
+            $table->decimal('harga_satuan', 15, 0);
             $table->timestamps();
         });
     }
